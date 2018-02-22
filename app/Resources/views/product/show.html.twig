@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Product</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ product.id }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ product.label }}</td>
+            </tr>
+            <tr>
+                <th>Refid</th>
+                <td>{{ product.refId }}</td>
+            </tr>
+            <tr>
+                <th>Codereference</th>
+                <td>{{ product.codereference }}</td>
+            </tr>
+            <tr>
+                <th>Articleid</th>
+                <td>{{ product.articleid }}</td>
+            </tr>
+            <tr>
+                <th>Codesku</th>
+                <td>{{ product.codesku }}</td>
+            </tr>
+            <tr>
+                <th>Kititem</th>
+                <td>{{ product.kititem }}</td>
+            </tr>
+            <tr>
+                <th>Declinedproduct</th>
+                <td>{{ product.declinedproduct }}</td>
+            </tr>
+            <tr>
+                <th>Indexindeclinedproduct</th>
+                <td>{{ product.indexindeclinedproduct }}</td>
+            </tr>
+            <tr>
+                <th>Axe1</th>
+                <td>{{ product.axe1 }}</td>
+            </tr>
+            <tr>
+                <th>Axe2</th>
+                <td>{{ product.axe2 }}</td>
+            </tr>
+            <tr>
+                <th>Axe3</th>
+                <td>{{ product.axe3 }}</td>
+            </tr>
+            <tr>
+                <th>Labelforurl</th>
+                <td>{{ product.labelforurl }}</td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>{{ product.color }}</td>
+            </tr>
+            <tr>
+                <th>Colororder</th>
+                <td>{{ product.colororder }}</td>
+            </tr>
+            <tr>
+                <th>Size</th>
+                <td>{{ product.size }}</td>
+            </tr>
+            <tr>
+                <th>Sizeorder</th>
+                <td>{{ product.sizeorder }}</td>
+            </tr>
+            <tr>
+                <th>Codeean</th>
+                <td>{{ product.codeean }}</td>
+            </tr>
+            <tr>
+                <th>Accessfilter</th>
+                <td>{{ product.accessfilter }}</td>
+            </tr>
+            <tr>
+                <th>Categoryid</th>
+                <td>{{ product.categoryid }}</td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ product.category }}</td>
+            </tr>
+            <tr>
+                <th>Producttype</th>
+                <td>{{ product.producttype }}</td>
+            </tr>
+            <tr>
+                <th>Gender</th>
+                <td>{{ product.gender }}</td>
+            </tr>
+            <tr>
+                <th>Marketingprogram</th>
+                <td>{{ product.marketingprogram }}</td>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <td>{{ product.position }}</td>
+            </tr>
+            <tr>
+                <th>Season</th>
+                <td>{{ product.season }}</td>
+            </tr>
+            <tr>
+                <th>Openedkititem</th>
+                <td>{{ product.openedkititem }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('product_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('product_edit', { 'id': product.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Products list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Label</th>
+                <th>Refid</th>
+                <th>Codereference</th>
+                <th>Articleid</th>
+                <th>Codesku</th>
+                <th>Kititem</th>
+                <th>Declinedproduct</th>
+                <th>Indexindeclinedproduct</th>
+                <th>Axe1</th>
+                <th>Axe2</th>
+                <th>Axe3</th>
+                <th>Labelforurl</th>
+                <th>Color</th>
+                <th>Colororder</th>
+                <th>Size</th>
+                <th>Sizeorder</th>
+                <th>Codeean</th>
+                <th>Accessfilter</th>
+                <th>Categoryid</th>
+                <th>Category</th>
+                <th>Producttype</th>
+                <th>Gender</th>
+                <th>Marketingprogram</th>
+                <th>Position</th>
+                <th>Season</th>
+                <th>Openedkititem</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
+                <td>{{ product.label }}</td>
+                <td>{{ product.refId }}</td>
+                <td>{{ product.codereference }}</td>
+                <td>{{ product.articleid }}</td>
+                <td>{{ product.codesku }}</td>
+                <td>{{ product.kititem }}</td>
+                <td>{{ product.declinedproduct }}</td>
+                <td>{{ product.indexindeclinedproduct }}</td>
+                <td>{{ product.axe1 }}</td>
+                <td>{{ product.axe2 }}</td>
+                <td>{{ product.axe3 }}</td>
+                <td>{{ product.labelforurl }}</td>
+                <td>{{ product.color }}</td>
+                <td>{{ product.colororder }}</td>
+                <td>{{ product.size }}</td>
+                <td>{{ product.sizeorder }}</td>
+                <td>{{ product.codeean }}</td>
+                <td>{{ product.accessfilter }}</td>
+                <td>{{ product.categoryid }}</td>
+                <td>{{ product.category }}</td>
+                <td>{{ product.producttype }}</td>
+                <td>{{ product.gender }}</td>
+                <td>{{ product.marketingprogram }}</td>
+                <td>{{ product.position }}</td>
+                <td>{{ product.season }}</td>
+                <td>{{ product.openedkititem }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('product_new') }}">Create a new product</a>
+        </li>
+    </ul>
+{% endblock %}

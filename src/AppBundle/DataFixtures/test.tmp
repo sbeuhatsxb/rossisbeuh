@@ -1,0 +1,15 @@
+<?php
+
+        //code PHP pour la préparation d'un import Fixtures
+        // $input = fopen(__DIR__."/basic_cooking_recipes", "r");
+        // $input = file_get_contents(__DIR__."/bddtmp.txt");
+        // //segmentation du csv dans un tableau
+        // $delimiter = "\n";
+        // $csv = str_getcsv ($input, $delimiter);
+
+        $file = fopen(__DIR__."/bddtmp.txt", "r");
+        while($row=fgetcsv($file, $delimiter = "\n")){
+            $tab_product[] = explode("\t", $row[0]);
+        }
+
+        var_dump($tab_product[1]);
