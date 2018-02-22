@@ -19,3 +19,4 @@
 *.php~
 *~
 .DS_Store
+/src/AppBundle/DataFixtures/sbeuh2.txt

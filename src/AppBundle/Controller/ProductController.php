@@ -60,16 +60,27 @@ class ProductController extends Controller
     /**
      * Finds and displays a product entity.
      *
-     * @Route("/{id}", name="product_show")
+     * @Route("/{page}", name="product_show", requirements={"page"="\d+"})
      * @Method("GET")
      */
-    public function showAction(Product $product)
+    public function showAction($page=1)
     {
-        $deleteForm = $this->createDeleteForm($product);
+        if ($page < 1) {
+            $page = 1;
+        }
+        $nbPerPage = 10;
 
-        return $this->render('product/show.html.twig', array(
-            'product' => $product,
-            'delete_form' => $deleteForm->createView(),
+        $em = $this->getDoctrine()->getManager();
+
+        $products = $em->getRepository('AppBundle:Product')->findBy(array());
+
+        $nbPages = ceil(count($products)/$nbPerPage);
+
+        return $this->render('product/index.html.twig', array(
+            'products' => $products,
+            'nbPages' => $nbPages,
+            'page' => $page,
+            'nbPerPage' => $nbPerPage
         ));
     }
 
