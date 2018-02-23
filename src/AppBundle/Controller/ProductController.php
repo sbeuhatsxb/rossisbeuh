@@ -66,13 +66,13 @@ class ProductController extends Controller
     public function showAction($page=1)
     {
         if ($page < 1) {
-            $page = 1;
+            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
         }
         $nbPerPage = 10;
 
         $em = $this->getDoctrine()->getManager();
 
-        $products = $em->getRepository('AppBundle:Product')->findBy(array());
+        $products = $em->getRepository('AppBundle:Product')->findAll();
 
         $nbPages = ceil(count($products)/$nbPerPage);
 

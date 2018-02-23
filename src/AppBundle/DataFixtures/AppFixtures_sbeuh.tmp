@@ -12,14 +12,11 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $i=0;
-        $manager->getConnection()->getConfiguration()->setSQLLogger(null);
-
-        $file = fopen(__DIR__."/sbeuh2.txt", "r");
+        $file = fopen(__DIR__."/sbeuh.txt", "r");
         while($row=fgetcsv($file, $delimiter = "\n")){
-            $column = explode("\t", $row[0]);
-            echo $i . " => " . $column[21] . ' ' . $column[2] . PHP_EOL;
-            if($column[0] === "document_id") continue;
+            $tab_product[] = explode("\t", $row[0]);
+            foreach ($tab_product as $column){
+                if($column[0] === "document_id") continue;
                 $product = new Product();
                 $product->setRefId($column[0]);
                 $product->setLabel($column[2]);
@@ -47,13 +44,13 @@ class AppFixtures extends Fixture
                 $product->setPosition($column[57]);
                 $product->setSeason($column[58]);
                 $product->setOpenedkititem($column[59]);
+
+
                 $manager->persist($product);
-                $i++;
-                if ($i % 25 == 0){
-                    $manager->flush();
-                    $manager->clear();
-                }
+
             }
-            $manager->flush();
         }
+        $manager->flush();
     }
+
+}

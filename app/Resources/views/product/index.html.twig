@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% set pageActuelle = 0 %}
+    {% set pageActuelle = 1 %}
     {% set departUser = 0 %}
     <h1>Products list</h1>
 
@@ -40,7 +40,7 @@
         </thead>
         <tbody>
         {% for product in products %}
-            {% if departUser >=(page - 1) * nbPerPage %}
+            {% if departUser >=( page - 1) * nbPerPage %}
                 {% if nbPerPage > pageActuelle %}
                     {% set pageActuelle = pageActuelle + 1 %}
                         <tr>
