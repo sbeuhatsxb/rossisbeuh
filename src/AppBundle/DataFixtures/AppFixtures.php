@@ -16,10 +16,20 @@ class AppFixtures extends Fixture
         $manager->getConnection()->getConfiguration()->setSQLLogger(null);
 
         $file = fopen(__DIR__."/sbeuh2.txt", "r");
-        while($row=fgetcsv($file, $delimiter = "\n")){
+        while($row=fgetcsv($file, 2048, $delimiter = "\n")){
+
+
+            $row[0] = str_replace("'", "", $row[0]);
+            $row[0] = str_replace(",", "@", $row[0]);
+
+
+
+
+
             $column = explode("\t", $row[0]);
-            echo $i . " => " . $column[21] . ' ' . $column[2] . PHP_EOL;
+            // echo $i . " => " . $column[21] . ' ' . $column[2] . PHP_EOL;
             if($column[0] === "document_id") continue;
+            if (isset($column[21])) {
                 $product = new Product();
                 $product->setRefId($column[0]);
                 $product->setLabel($column[2]);
@@ -53,7 +63,10 @@ class AppFixtures extends Fixture
                     $manager->flush();
                     $manager->clear();
                 }
+            } else {
+                echo var_export($column , TRUE) . PHP_EOL ;
             }
             $manager->flush();
         }
     }
+}

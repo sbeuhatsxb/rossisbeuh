@@ -15,19 +15,29 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class ProductController extends Controller
 {
     /**
-     * Lists all product entities.
+     * Finds and displays a product entity.
      *
-     * @Route("/", name="product_index")
+     * @Route("/{page}", name="product_index", requirements={"page"="\d+"})
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page=1)
     {
+        if ($page < 1) {
+            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        }
+        $nbPerPage = 20;
+
         $em = $this->getDoctrine()->getManager();
 
         $products = $em->getRepository('AppBundle:Product')->findAll();
 
+        $nbPages = ceil(count($products)/$nbPerPage);
+
         return $this->render('product/index.html.twig', array(
             'products' => $products,
+            'nbPages' => $nbPages,
+            'page' => $page,
+            'nbPerPage' => $nbPerPage
         ));
     }
 
@@ -57,32 +67,21 @@ class ProductController extends Controller
         ));
     }
 
-    /**
-     * Finds and displays a product entity.
-     *
-     * @Route("/{page}", name="product_show", requirements={"page"="\d+"})
-     * @Method("GET")
-     */
-    public function showAction($page=1)
-    {
-        if ($page < 1) {
-            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        /**
+         * Finds and displays a product entity.
+         *
+         * @Route("/{id}", name="product_show")
+         * @Method("GET")
+         */
+        public function showAction(Product $product)
+        {
+            $deleteForm = $this->createDeleteForm($product);
+
+            return $this->render('product/show.html.twig', array(
+                'product' => $product,
+                'delete_form' => $deleteForm->createView(),
+            ));
         }
-        $nbPerPage = 10;
-
-        $em = $this->getDoctrine()->getManager();
-
-        $products = $em->getRepository('AppBundle:Product')->findAll();
-
-        $nbPages = ceil(count($products)/$nbPerPage);
-
-        return $this->render('product/index.html.twig', array(
-            'products' => $products,
-            'nbPages' => $nbPages,
-            'page' => $page,
-            'nbPerPage' => $nbPerPage
-        ));
-    }
 
     /**
      * Displays a form to edit an existing product entity.
