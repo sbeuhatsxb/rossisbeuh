@@ -6,6 +6,7 @@ use AppBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * Product controller.
@@ -29,7 +30,7 @@ class ProductController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
-        $products = $em->getRepository('AppBundle:Product')->findAll();
+        $products = $em->getRepository('AppBundle:Product')->findBy(array(), array('id' => 'ASC'));
 
         $nbPages = ceil(count($products)/$nbPerPage);
 
