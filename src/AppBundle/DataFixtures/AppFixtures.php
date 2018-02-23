@@ -27,7 +27,7 @@ class AppFixtures extends Fixture
 
 
             $column = explode("\t", $row[0]);
-            // echo $i . " => " . $column[21] . ' ' . $column[2] . PHP_EOL;
+            echo $i . " => " . $column[21] . ' ' . $column[2] . PHP_EOL;
             if($column[0] === "document_id") continue;
             if (isset($column[21])) {
                 $product = new Product();
@@ -48,7 +48,6 @@ class AppFixtures extends Fixture
                 $product->setSize($column[47]);
                 $product->setSizeorder($column[48]);
                 $product->setCodeean($column[49]);
-                $product->setAccessfilter($column[51]);
                 $product->setCategoryid($column[52]);
                 $product->setCategory($column[53]);
                 $product->setProducttype($column[54]);
