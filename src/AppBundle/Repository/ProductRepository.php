@@ -13,14 +13,18 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
 
-    public function getPosts($first_result, $query, $max_results = 20)
+    public function getProducts($page, $nbPerPage)
     {
-    $qb = $this->createQueryBuilder('material');
-    $qb
-        ->select('material')
+        $qb = $this->createQueryBuilder('product');
+        $qb
+            ->select('product')
+            ->getQuery()
+        ;
+
+        $qb
         ->setFirstResult(($page-1) * $nbPerPage)
         ->setMaxResults($nbPerPage)
-    ;
-    return new Paginator($qb);
+;
+        return new Paginator($qb, true);
     }
 }

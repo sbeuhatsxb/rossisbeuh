@@ -28,16 +28,22 @@ class ProductController extends Controller
         }
         $nbPerPage = 20;
 
-        $em = $this->getDoctrine()->getManager();
 
-        $products = $em->getRepository('AppBundle:Product')->findBy(array(), array('id' => 'ASC'));
+        $em = $this->getDoctrine()->getManager();
+        $products = $em->getRepository('AppBundle:Product')->getProducts($page, $nbPerPage);
 
         $nbPages = ceil(count($products)/$nbPerPage);
+        $thisPage = $page;
+
+        if ($page > $nbPages) {
+            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        }
 
         return $this->render('product/index.html.twig', array(
             'products' => $products,
             'nbPages' => $nbPages,
             'page' => $page,
+            'thisPage' => $thisPage,
             'nbPerPage' => $nbPerPage
         ));
     }

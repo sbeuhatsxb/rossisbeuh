@@ -1,103 +1,124 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% set pageActuelle = 1 %}
-    {% set departUser = 0 %}
+
     <h1>Products list</h1>
 
     <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>Refid</th>
-                <th>Codereference</th>
-                <th>Articleid</th>
-                <th>Codesku</th>
-                <th>Kititem</th>
-                <th>Declinedproduct</th>
-                <th>Indexindeclinedproduct</th>
-                <th>Axe1</th>
-                <th>Axe2</th>
-                <th>Axe3</th>
-                <th>Labelforurl</th>
-                <th>Color</th>
-                <th>Colororder</th>
-                <th>Size</th>
-                <th>Sizeorder</th>
-                <th>Codeean</th>
-                <th>Accessfilter</th>
-                <th>Categoryid</th>
-                <th>Category</th>
-                <th>Producttype</th>
-                <th>Gender</th>
-                <th>Marketingprogram</th>
-                <th>Position</th>
-                <th>Season</th>
-                <th>Openedkititem</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for product in products %}
-            {% if departUser >=( page - 1) * nbPerPage %}
-                {% if nbPerPage > pageActuelle %}
-                    {% set pageActuelle = pageActuelle + 1 %}
-                        <tr>
-                            <td><a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a></td>
-                            <td>{{ product.label }}</td>
-                            <td>{{ product.refId }}</td>
-                            <td>{{ product.codereference }}</td>
-                            <td>{{ product.articleid }}</td>
-                            <td>{{ product.codesku }}</td>
-                            <td>{{ product.kititem }}</td>
-                            <td>{{ product.declinedproduct }}</td>
-                            <td>{{ product.indexindeclinedproduct }}</td>
-                            <td>{{ product.axe1 }}</td>
-                            <td>{{ product.axe2 }}</td>
-                            <td>{{ product.axe3 }}</td>
-                            <td>{{ product.labelforurl }}</td>
-                            <td>{{ product.color }}</td>
-                            <td>{{ product.colororder }}</td>
-                            <td>{{ product.size }}</td>
-                            <td>{{ product.sizeorder }}</td>
-                            <td>{{ product.codeean }}</td>
-                            <td>{{ product.accessfilter }}</td>
-                            <td>{{ product.categoryid }}</td>
-                            <td>{{ product.category }}</td>
-                            <td>{{ product.producttype }}</td>
-                            <td>{{ product.gender }}</td>
-                            <td>{{ product.marketingprogram }}</td>
-                            <td>{{ product.position }}</td>
-                            <td>{{ product.season }}</td>
-                            <td>{{ product.openedkititem }}</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-        <ul class="pagination">
-            {% for p in range(1, nbPages) %}
-                <li{% if p == page %} class="active"{% endif %}>
-                    <a href="{{ path('product_index', {'page': p}) }}">{{ p }}</a>
-                </li>
-            {% endfor %}
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Label</th>
+                                    <th>Refid</th>
+                                    <th>Codereference</th>
+                                    <th>Articleid</th>
+                                    <th>Codesku</th>
+                                    <th>Kititem</th>
+                                    <th>Declinedproduct</th>
+                                    <th>Indexindeclinedproduct</th>
+                                    <th>Axe1</th>
+                                    <th>Axe2</th>
+                                    <th>Axe3</th>
+                                    <th>Labelforurl</th>
+                                    <th>Color</th>
+                                    <th>Colororder</th>
+                                    <th>Size</th>
+                                    <th>Sizeorder</th>
+                                    <th>Codeean</th>
+                                    <th>Accessfilter</th>
+                                    <th>Categoryid</th>
+                                    <th>Category</th>
+                                    <th>Producttype</th>
+                                    <th>Gender</th>
+                                    <th>Marketingprogram</th>
+                                    <th>Position</th>
+                                    <th>Season</th>
+                                    <th>Openedkititem</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in products %}
+                                    <tr>
+                                        <td>
+                                            <a href="{{ path('product_show', { 'id': product.id }) }}">{{ product.id }}</a>
+                                        </td>
+                                        <td>{{ product.label }}</td>
+                                        <td>{{ product.refId }}</td>
+                                        <td>{{ product.codereference }}</td>
+                                        <td>{{ product.articleid }}</td>
+                                        <td>{{ product.codesku }}</td>
+                                        <td>{{ product.kititem }}</td>
+                                        <td>{{ product.declinedproduct }}</td>
+                                        <td>{{ product.indexindeclinedproduct }}</td>
+                                        <td>{{ product.axe1 }}</td>
+                                        <td>{{ product.axe2 }}</td>
+                                        <td>{{ product.axe3 }}</td>
+                                        <td>{{ product.labelforurl }}</td>
+                                        <td>{{ product.color }}</td>
+                                        <td>{{ product.colororder }}</td>
+                                        <td>{{ product.size }}</td>
+                                        <td>{{ product.sizeorder }}</td>
+                                        <td>{{ product.codeean }}</td>
+                                        <td>{{ product.accessfilter }}</td>
+                                        <td>{{ product.categoryid }}</td>
+                                        <td>{{ product.category }}</td>
+                                        <td>{{ product.producttype }}</td>
+                                        <td>{{ product.gender }}</td>
+                                        <td>{{ product.marketingprogram }}</td>
+                                        <td>{{ product.position }}</td>
+                                        <td>{{ product.season }}</td>
+                                        <td>{{ product.openedkititem }}</td>
+                                        <td>
+                                            <ul>
+                                                <li>
+                                                    <a href="{{ path('product_show', { 'id': product.id }) }}">show</a>
+                                                </li>
+                                                <li>
+                                                    <a href="{{ path('product_edit', { 'id': product.id }) }}">edit</a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                {% if nbPages > 1 %}
+                                    <ul class="pagination pagination-sm">
+                                        {# `«` arrow  #}
+                                        <li {{ thisPage == 1 ? 'class="disabled"' }}>
+                                            <a href="{{ path('product_index', {page: thisPage-1 < 1 ? 1 : thisPage-1}) }}">«</a>
+                                        </li>
 
-        </tbody>
-    </table>
+                                        {# Render each page number #}
+                                        {% for i in thisPage..thisPage+3 %}
+                                            <li {{ thisPage == i ? 'class="active"' }}>
+                                                <a href="{{ path('product_index', {page: i}) }}">{{ i }}</a>
+                                            </li>
+                                        {% endfor %}
 
-    <ul>
-        <li>
-            <a href="{{ path('product_new') }}">Create a new product</a>
-        </li>
-    </ul>
-{% endblock %}
+                                        {# `»` arrow #}
+                                        <li {{ thisPage == nbPages ? 'class="disabled"' }}>
+                                            <a href="{{ path('product_index', {page: thisPage+1 <= nbPages ? thisPage+1 : thisPage}) }}">»</a>
+                                        </li>
+                                    </ul>
+                                {% endif %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ul>
+            <li>
+                <a href="{{ path('product_new') }}">Create a new product</a>
+            </li>
+        </ul>
+    {% endblock %}

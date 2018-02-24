@@ -20,7 +20,7 @@ class AppFixtures extends Fixture
 
 
             $row[0] = str_replace("'", "", $row[0]);
-            $row[0] = str_replace(",", "@", $row[0]);
+            $row[0] = str_replace(",", "", $row[0]);
 
 
 
