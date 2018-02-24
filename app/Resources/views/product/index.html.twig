@@ -2,7 +2,7 @@
 
 {% block body %}
 
-    <h1>Products list</h1>
+    <h1>Rossignol : Liste des références</h1>
 
     <table>
         <div class="clearfix"></div>
@@ -89,36 +89,64 @@
                                 {% endfor %}
                                 {% if nbPages > 1 %}
                                     <ul class="pagination pagination-sm">
-                                        {# `«` arrow  #}
+                                        {# `Première` page #}
+                                        <li {{ thisPage == 1 ? 'class="disabled"' }}>
+                                            <a href="{{ path('product_index', {page: 1 }) }}">Première</a>
+                                        </li>
+
+                                        {# `«` flèche gauche  #}
                                         <li {{ thisPage == 1 ? 'class="disabled"' }}>
                                             <a href="{{ path('product_index', {page: thisPage-1 < 1 ? 1 : thisPage-1}) }}">«</a>
                                         </li>
 
-                                        {# Render each page number #}
-                                        {% for i in thisPage..thisPage+3 %}
-                                            <li {{ thisPage == i ? 'class="active"' }}>
-                                                <a href="{{ path('product_index', {page: i}) }}">{{ i }}</a>
-                                            </li>
-                                        {% endfor %}
+                                        {# Rendu de la pagination en fonction d'où on se trouve #}
+                                        {% if thisPage < 6 %}
+                                            {% for i in thisPage..thisPage + 9 %}
+                                                <li {{ thisPage == i ? 'class="active"' }}>
+                                                    <a href="{{ path('product_index', {page: i}) }}">{{ i }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        {% endif %}
 
-                                        {# `»` arrow #}
+                                        {% if thisPage >= 6 and thisPage < nbPages - 9 %}
+                                            {% for i in thisPage - 5..thisPage + 5 %}
+                                                <li {{ thisPage == i ? 'class="active"' }}>
+                                                    <a href="{{ path('product_index', {page: i}) }}">{{ i }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        {% endif %}
+
+                                        {% if thisPage >= nbPages - 9 %}
+                                            {% for i in thisPage - 5..nbPages %}
+                                                <li {{ thisPage == i ? 'class="active"' }}>
+                                                    <a href="{{ path('product_index', {page: i}) }}">{{ i }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        {% endif %}
+
+                                        {# `»` flèche droite #}
                                         <li {{ thisPage == nbPages ? 'class="disabled"' }}>
                                             <a href="{{ path('product_index', {page: thisPage+1 <= nbPages ? thisPage+1 : thisPage}) }}">»</a>
+                                        </li>
+
+                                        {# `Dernière` page #}
+                                        <li {{ thisPage == nbPages ? 'class="disabled"' }}>
+                                            <a href="{{ path('product_index', {page: nbPages }) }}">Dernière</a>
                                         </li>
                                     </ul>
                                 {% endif %}
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <ul>
-            <li>
-                <a href="{{ path('product_new') }}">Create a new product</a>
-            </li>
-        </ul>
-    {% endblock %}
+    <ul>
+        <li>
+            <a href="{{ path('product_new') }}">Create a new product</a>
+        </li>
+    </ul>
+{% endblock %}

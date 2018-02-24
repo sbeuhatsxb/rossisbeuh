@@ -77,7 +77,7 @@ class ProductController extends Controller
         /**
          * Finds and displays a product entity.
          *
-         * @Route("/{id}", name="product_show")
+         * @Route("/detail/{id}", name="product_show")
          * @Method("GET")
          */
         public function showAction(Product $product)
