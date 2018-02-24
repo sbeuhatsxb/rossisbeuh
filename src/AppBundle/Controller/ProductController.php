@@ -16,9 +16,9 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class ProductController extends Controller
 {
     /**
-     * Finds and displays a product entity.
+     * List all product entities.
      *
-     * @Route("/{page}", name="product_index", requirements={"page"="\d+"})
+     * @Route("/{page}", name="product_index", requirements={"page"="\d+"},  defaults={"page"=1})
      * @Method("GET")
      */
     public function indexAction($page=1)
