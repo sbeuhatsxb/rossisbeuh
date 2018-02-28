@@ -76,3 +76,14 @@ Enjoy!
 [14]: https://symfony.com/doc/current/setup/built_in_web_server.html
 [15]: https://symfony.com/doc/current/setup.html
 =======
+
+̀``̀
+git clone https://github.com/sbeuhatsxb/rossisbeuh
+cd rossisbeuh
+composer require friendsofsymfony/user-bundle "~2.0"
+composer install
+php bin/console doctrine:database:create
+php bin/console doctrine:schema:update --force
+php bin/console doctrine:fixtures:load
+php bin/console server:run
+``̀
