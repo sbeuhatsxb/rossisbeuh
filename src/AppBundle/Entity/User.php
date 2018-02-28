@@ -25,6 +25,41 @@ class User extends BaseUser
     /**
      * @var string
      *
+     * @ORM\Column(name="userChangeId", type="string", length=255, nullable=true)
+     */
+    private $userChangeId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="label", type="string", length=255, nullable=true)
+     */
+    private $label;
+
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="userCreationDate", type="datetime", nullable=true)
+     */
+    private $userCreationDate;
+
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="creationDate", type="datetime", nullable=true)
+     */
+    private $modifDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=255, nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="firstName", type="string", length=255, nullable=true)
      */
     private $firstName;
@@ -39,56 +74,145 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="address", type="string", length=255, nullable=true)
+     * @ORM\Column(name="groups", type="string", length=11, nullable=true)
      */
-    private $address;
+    private $changeGroups;
+
+    /**
+     * @var DateTime
+     *
+     * @ORM\Column(name="lastLogin", type="datetime", nullable=true)
+     */
+    protected $lastLogin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     * @ORM\Column(name="district", type="string", length=255, nullable=true)
      */
-    private $city;
+    private $district;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="zipCode", type="string", length=255, nullable=true)
-     */
-    private $zipCode;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="country", type="string", length=255, nullable=true)
-     */
-    private $country;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mobilePhone", type="string", length=255, nullable=true)
-     */
-    private $mobilePhone;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="touchtonePhone", type="string", length=255, nullable=true)
-     */
-    private $touchtonePhone;
 
 
     /**
-     * Get id
+     * Set userChangeId
      *
-     * @return int
+     * @param string $userChangeId
+     *
+     * @return User
      */
-    public function getId()
+    public function setUserChangeId($userChangeId)
     {
-        return $this->id;
+        $this->userChangeId = $userChangeId;
+
+        return $this;
     }
 
+    /**
+     * Get userChangeId
+     *
+     * @return string
+     */
+    public function getUserChangeId()
+    {
+        return $this->userChangeId;
+    }
+
+    /**
+     * Set label
+     *
+     * @param string $label
+     *
+     * @return User
+     */
+    public function setLabel($label)
+    {
+        $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * Get label
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
+
+    /**
+     * Set userCreationDate
+     *
+     * @param \DateTime $userCreationDate
+     *
+     * @return User
+     */
+    public function setUserCreationDate($userCreationDate)
+    {
+        $this->userCreationDate = $userCreationDate;
+
+        return $this;
+    }
+
+    /**
+     * Get userCreationDate
+     *
+     * @return \DateTime
+     */
+    public function getUserCreationDate()
+    {
+        return $this->userCreationDate;
+    }
+
+    /**
+     * Set modifDate
+     *
+     * @param \DateTime $modifDate
+     *
+     * @return User
+     */
+    public function setModifDate($modifDate)
+    {
+        $this->modifDate = $modifDate;
+
+        return $this;
+    }
+
+    /**
+     * Get modifDate
+     *
+     * @return \DateTime
+     */
+    public function getModifDate()
+    {
+        return $this->modifDate;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return User
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
     /**
      * Set firstName
@@ -139,151 +263,50 @@ class User extends BaseUser
     }
 
     /**
-     * Set address
+     * Set changeGroups
      *
-     * @param string $address
+     * @param string $changeGroups
      *
      * @return User
      */
-    public function setAddress($address)
+    public function setChangeGroups($changeGroups)
     {
-        $this->address = $address;
+        $this->changeGroups = $changeGroups;
 
         return $this;
     }
 
     /**
-     * Get address
+     * Get changeGroups
      *
      * @return string
      */
-    public function getAddress()
+    public function getChangeGroups()
     {
-        return $this->address;
+        return $this->changeGroups;
     }
 
     /**
-     * Set city
+     * Set district
      *
-     * @param string $city
+     * @param string $district
      *
      * @return User
      */
-    public function setCity($city)
+    public function setDistrict($district)
     {
-        $this->city = $city;
+        $this->district = $district;
 
         return $this;
     }
 
     /**
-     * Get city
+     * Get district
      *
      * @return string
      */
-    public function getCity()
+    public function getDistrict()
     {
-        return $this->city;
-    }
-
-    /**
-     * Set zipCode
-     *
-     * @param string $zipCode
-     *
-     * @return User
-     */
-    public function setZipCode($zipCode)
-    {
-        $this->zipCode = $zipCode;
-
-        return $this;
-    }
-
-    /**
-     * Get zipCode
-     *
-     * @return string
-     */
-    public function getZipCode()
-    {
-        return $this->zipCode;
-    }
-
-    /**
-     * Set country
-     *
-     * @param string $country
-     *
-     * @return User
-     */
-    public function setCountry($country)
-    {
-        $this->country = $country;
-
-        return $this;
-    }
-
-    /**
-     * Get country
-     *
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
-    }
-
-    /**
-     * Set mobilePhone
-     *
-     * @param string $mobilePhone
-     *
-     * @return User
-     */
-    public function setMobilePhone($mobilePhone)
-    {
-        $this->mobilePhone = $mobilePhone;
-
-        return $this;
-    }
-
-    /**
-     * Get mobilePhone
-     *
-     * @return string
-     */
-    public function getMobilePhone()
-    {
-        return $this->mobilePhone;
-    }
-
-    /**
-     * Set touchtonePhone
-     *
-     * @param string $touchtonePhone
-     *
-     * @return User
-     */
-    public function setTouchtonePhone($touchtonePhone)
-    {
-        $this->touchtonePhone = $touchtonePhone;
-
-        return $this;
-    }
-
-    /**
-     * Get touchtonePhone
-     *
-     * @return string
-     */
-    public function getTouchtonePhone()
-    {
-        return $this->touchtonePhone;
-    }
-
-    public function __construct()
-    {
-        parent::__construct();
+        return $this->district;
     }
 }
