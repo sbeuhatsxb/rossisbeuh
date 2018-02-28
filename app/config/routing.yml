@@ -1,3 +1,18 @@
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+fos_user_change_password:
+    path: profil_utilisateur/changer-mot-de-passe
+    defaults: { _controller: FOSUserBundle:ChangePassword:changePassword }
+fos_user_security_login:
+    path: connexion
+    defaults: { _controller: FOSUserBundle:Security:login }
+fos_user_security_logout:
+    path: deconnexion
+    defaults: { _controller: FOSUserBundle:Security:logout }
+fos_user_profile_show:
+    path: profil_utilisateur
+    defaults: { _controller: FOSUserBundle:Profile:show }
