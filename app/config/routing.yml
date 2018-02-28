@@ -16,3 +16,11 @@ fos_user_security_logout:
 fos_user_profile_show:
     path: profil_utilisateur
     defaults: { _controller: FOSUserBundle:Profile:show }
+
+appbundle_user:
+    resource: "@AppBundle/Controller/UserController.php"
+    type:     annotation
+
+appbundle_product:
+    resource: "@AppBundle/Controller/ProductController.php"
+    type:     annotation
