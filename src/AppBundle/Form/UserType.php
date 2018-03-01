@@ -13,15 +13,7 @@ class UserType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-        ->add('firstName')
-        ->add('lastName')
-        ->add('address')
-        ->add('city')
-        ->add('zipCode')
-        ->add('country')
-        ->add('mobilePhone')
-        ->add('touchtonePhone');
+        $builder->add('userChangeId')->add('label')->add('userCreationDate')->add('modifDate')->add('status')->add('firstName')->add('lastName')->add('changeGroups')->add('district')->add('root');
     }/**
      * {@inheritdoc}
      */

@@ -8,7 +8,7 @@ use AppBundle\Entity\Product;
 
 
 
-class AppFixtures extends Fixture
+class ProductFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
@@ -18,16 +18,11 @@ class AppFixtures extends Fixture
         $file = fopen(__DIR__."/sbeuh2.txt", "r");
         while($row=fgetcsv($file, 2048, $delimiter = "\n")){
 
-
             $row[0] = str_replace("'", "", $row[0]);
             $row[0] = str_replace(",", "", $row[0]);
 
-
-
-
-
             $column = explode("\t", $row[0]);
-            echo $i . " => " . $column[21] . ' ' . $column[2] . PHP_EOL;
+            echo $i . " => PRODUCT => " . $column[21] . ' ' . $column[2] . PHP_EOL;
             if($column[0] === "document_id") continue;
             if (isset($column[21])) {
                 $product = new Product();
@@ -68,4 +63,5 @@ class AppFixtures extends Fixture
             $manager->flush();
         }
     }
+
 }

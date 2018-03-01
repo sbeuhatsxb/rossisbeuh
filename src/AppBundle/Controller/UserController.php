@@ -15,19 +15,35 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 class UserController extends Controller
 {
     /**
-     * Lists all user entities.
+     * List all user entities.
      *
-     * @Route("/", name="user_index")
+     * @Route("/{page}", defaults={"page"=1}, name="user_index", requirements={"page"="\d+"})
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($page=1)
     {
-        $em = $this->getDoctrine()->getManager();
+        if ($page < 1) {
+            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        }
+        $nbPerPage = 20;
 
-        $users = $em->getRepository('AppBundle:User')->findAll();
+
+        $em = $this->getDoctrine()->getManager();
+        $users = $em->getRepository('AppBundle:User')->getUsers($page, $nbPerPage);
+
+        $nbPages = ceil(count($users)/$nbPerPage);
+        $thisPage = $page;
+
+        if ($page > $nbPages) {
+            throw $this->createNotFoundException("La page ".$page." n'existe pas.");
+        }
 
         return $this->render('user/index.html.twig', array(
             'users' => $users,
+            'nbPages' => $nbPages,
+            'page' => $page,
+            'thisPage' => $thisPage,
+            'nbPerPage' => $nbPerPage
         ));
     }
 

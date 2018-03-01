@@ -7,14 +7,16 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Userchangeid</th>
+                <th>Label</th>
+                <th>Usercreationdate</th>
+                <th>Modifdate</th>
+                <th>Status</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>Zipcode</th>
-                <th>Country</th>
-                <th>Mobilephone</th>
-                <th>Touchtonephone</th>
+                <th>Changegroups</th>
+                <th>District</th>
+                <th>Root</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -22,14 +24,16 @@
         {% for user in users %}
             <tr>
                 <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.userChangeId }}</td>
+                <td>{{ user.label }}</td>
+                <td>{% if user.userCreationDate %}{{ user.userCreationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if user.modifDate %}{{ user.modifDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ user.status }}</td>
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
-                <td>{{ user.address }}</td>
-                <td>{{ user.city }}</td>
-                <td>{{ user.zipCode }}</td>
-                <td>{{ user.country }}</td>
-                <td>{{ user.mobilePhone }}</td>
-                <td>{{ user.touchtonePhone }}</td>
+                <td>{{ user.changeGroups }}</td>
+                <td>{{ user.district }}</td>
+                <td>{% if user.root %}Yes{% else %}No{% endif %}</td>
                 <td>
                     <ul>
                         <li>
@@ -42,6 +46,54 @@
                 </td>
             </tr>
         {% endfor %}
+        {% if nbPages > 1 %}
+            <ul class="pagination pagination-sm">
+                {# `Première` page #}
+                <li {{ thisPage == 1 ? 'class="disabled"' }}>
+                    <a href="{{ path('user_index', {page: 1 }) }}">Première</a>
+                </li>
+
+                {# `«` flèche gauche  #}
+                <li {{ thisPage == 1 ? 'class="disabled"' }}>
+                    <a href="{{ path('user_index', {page: thisPage-1 < 1 ? 1 : thisPage-1}) }}">«</a>
+                </li>
+
+                {# Rendu de la pagination en fonction d'où on se trouve #}
+                {% if thisPage < 6 %}
+                    {% for i in thisPage..thisPage + 9 %}
+                        <li {{ thisPage == i ? 'class="active"' }}>
+                            <a href="{{ path('user_index', {page: i}) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+
+                {% if thisPage >= 6 and thisPage < nbPages - 9 %}
+                    {% for i in thisPage - 5..thisPage + 5 %}
+                        <li {{ thisPage == i ? 'class="active"' }}>
+                            <a href="{{ path('user_index', {page: i}) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+
+                {% if thisPage >= nbPages - 9 %}
+                    {% for i in thisPage - 5..nbPages %}
+                        <li {{ thisPage == i ? 'class="active"' }}>
+                            <a href="{{ path('user_index', {page: i}) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+
+                {# `»` flèche droite #}
+                <li {{ thisPage == nbPages ? 'class="disabled"' }}>
+                    <a href="{{ path('user_index', {page: thisPage+1 <= nbPages ? thisPage+1 : thisPage}) }}">»</a>
+                </li>
+
+                {# `Dernière` page #}
+                <li {{ thisPage == nbPages ? 'class="disabled"' }}>
+                    <a href="{{ path('user_index', {page: nbPages }) }}">Dernière</a>
+                </li>
+            </ul>
+        {% endif %}
         </tbody>
     </table>
 

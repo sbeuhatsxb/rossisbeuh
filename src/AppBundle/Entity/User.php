@@ -79,18 +79,18 @@ class User extends BaseUser
     private $changeGroups;
 
     /**
-     * @var DateTime
-     *
-     * @ORM\Column(name="lastLogin", type="datetime", nullable=true)
-     */
-    protected $lastLogin;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="district", type="string", length=255, nullable=true)
      */
     private $district;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="root", type="boolean", nullable=true)
+     */
+    private $root;
 
 
 
@@ -308,5 +308,34 @@ class User extends BaseUser
     public function getDistrict()
     {
         return $this->district;
+    }
+
+    /**
+     * Set root
+     *
+     * @param boolean $root
+     *
+     * @return User
+     */
+    public function setRoot($root)
+    {
+        $this->root = $root;
+
+        return $this;
+    }
+
+    /**
+     * Get root
+     *
+     * @return boolean
+     */
+    public function getRoot()
+    {
+        return $this->root;
+    }
+
+    public function __construct()
+    {
+        parent::__construct();
     }
 }

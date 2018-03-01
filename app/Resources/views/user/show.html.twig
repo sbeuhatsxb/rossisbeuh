@@ -10,6 +10,26 @@
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
+                <th>Userchangeid</th>
+                <td>{{ user.userChangeId }}</td>
+            </tr>
+            <tr>
+                <th>Label</th>
+                <td>{{ user.label }}</td>
+            </tr>
+            <tr>
+                <th>Usercreationdate</th>
+                <td>{% if user.userCreationDate %}{{ user.userCreationDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifdate</th>
+                <td>{% if user.modifDate %}{{ user.modifDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ user.status }}</td>
+            </tr>
+            <tr>
                 <th>Firstname</th>
                 <td>{{ user.firstName }}</td>
             </tr>
@@ -18,28 +38,16 @@
                 <td>{{ user.lastName }}</td>
             </tr>
             <tr>
-                <th>Address</th>
-                <td>{{ user.address }}</td>
+                <th>Changegroups</th>
+                <td>{{ user.changeGroups }}</td>
             </tr>
             <tr>
-                <th>City</th>
-                <td>{{ user.city }}</td>
+                <th>District</th>
+                <td>{{ user.district }}</td>
             </tr>
             <tr>
-                <th>Zipcode</th>
-                <td>{{ user.zipCode }}</td>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <td>{{ user.country }}</td>
-            </tr>
-            <tr>
-                <th>Mobilephone</th>
-                <td>{{ user.mobilePhone }}</td>
-            </tr>
-            <tr>
-                <th>Touchtonephone</th>
-                <td>{{ user.touchtonePhone }}</td>
+                <th>Root</th>
+                <td>{% if user.root %}Yes{% else %}No{% endif %}</td>
             </tr>
         </tbody>
     </table>
