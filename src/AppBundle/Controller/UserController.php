@@ -17,10 +17,11 @@ class UserController extends Controller
     /**
      * List all user entities.
      *
-     * @Route("/{page}", defaults={"page"=1}, name="user_index", requirements={"page"="\d+"})
+     * @Route("/", defaults={"id" = 1})
+     * @Route("/{page}", name="user_index", requirements={"page"="\d+"})
      * @Method("GET")
      */
-    public function indexAction($page=1)
+    public function indexAction($page = 1)
     {
         if ($page < 1) {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");

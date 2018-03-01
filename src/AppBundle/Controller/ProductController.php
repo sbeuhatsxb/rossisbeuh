@@ -19,10 +19,11 @@ class ProductController extends Controller
     /**
      * List all product entities.
      *
-     * @Route("/{page}", defaults={"page"=1}, name="product_index", requirements={"page"="\d+"})
+     * @Route("/", defaults={"id" = 1})
+     * @Route("/{page}", name="product_index", requirements={"page"="\d+"})
      * @Method("GET")
      */
-    public function indexAction($page=1)
+    public function indexAction($page = 1)
     {
         if ($page < 1) {
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
